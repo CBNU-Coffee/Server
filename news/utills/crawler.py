@@ -1,23 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
 import time
-from news.models import News
+#from news.models import News
 
-def crawl_and_save(keyword='복지', pages=1):
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    for page in range(1, pages + 1):
-        url = f"https://search.naver.com/search.naver?where=news&query={keyword}&start={(page - 1)*10 + 1}"
-        res = requests.get(url, headers=headers)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        items = soup.select('.list_news .news_area')
+def crawling(keyword = '복지', page = 3):
+    headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    for i in range(1, page):
+        url = f"https://search.hankookilbo.com/Search?Page={i}&tab=NEWS&sort=relation&searchText={keyword}&searchTypeSet=TITLE,CONTENTS&selectedPeriod=%EC%A0%84%EC%B2%B4&filter=head"
+        response = requests.get(url, headers=headers)
 
-        for item in items:
-            tag = item.select_one('.news_tit')
-            if tag:
-                title = tag['title']
-                link = tag['href']
-                content = title  # 지금은 본문 대신 제목 저장 (나중에 본문 크롤링 추가 가능)
-                if not News.objects.filter(link=link).exists():
-                    News.objects.create(title=title, link=link, content=content, media='네이버')
-                    print(f"저장: {title}")
-            time.sleep(0.5)
+        if response.status_code == 200:
+            html = response.text
+            soup = BeautifulSoup(html, 'html.parser')
+            titles = soup.select("h3.board-list.h3.mb_only a")
+            items = soup.select("div.text")
+            for tag in titles:
+                print(tag.get_text())
+                time.sleep(0.1)
+            for tag in items:
+                print(tag.get_text())
+                time.sleep(0.1)
+        else:
+            print("크롤링 실패")
