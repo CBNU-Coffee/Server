@@ -22,3 +22,5 @@ def crawling(keyword = '복지', page = 3):
                 time.sleep(0.1)
         else:
             print("크롤링 실패")
+
+
