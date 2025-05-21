@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>뉴스 검색 - 메인</title>
+  <link rel="stylesheet" href="test.css">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; }
+    .search-box { margin-top: 20px; }
+    input.search-input { padding: 8px; width: 250px; font-size: 16px; }
+    button.search-button { padding: 8px 12px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>yaho! coffee</h1>
+  <div class="search-box">
+    <input id="mainSearchInput" class="search-input" type="text" placeholder="검색어 입력" />
+    <button class="search-button" onclick="goToResults()">검색</button>
+  </div>
+
+  <script>
+    function goToResults() {
+      const keyword = document.getElementById("mainSearchInput").value;
+      if (!keyword.trim()) {
+        alert("검색어를 입력하세요!");
+        return;
+      }
+      window.location.href = `result.html?keyword=${encodeURIComponent(keyword)}`;
+    }
+  </script>
+</body>
+</html>
