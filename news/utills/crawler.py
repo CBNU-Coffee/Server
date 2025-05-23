@@ -14,6 +14,8 @@ def crawling(keyword='복지', page=3):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
     all_titles = []
     all_contents = []
+    all_day = []
+    all_news_url = []
 
     print("크롤러 실행 중...")
     
@@ -25,24 +27,36 @@ def crawling(keyword='복지', page=3):
             soup = BeautifulSoup(html, 'html.parser')
             titles = soup.select("h3.board-list.h3.mb_only a")
             items = soup.select("div.text")
-            
+            day = soup.select("p.date.mb_only em")
+            news_url = soup.select("h3.board-list.h3.mb_only a")
+
             # 제목 저장
             for tag in titles:
                 title_text = tag.get_text().strip()
                 all_titles.append(title_text)
-                print(tag.get_text())
                 time.sleep(0.1)
             
             # 내용 저장
             for tag in items:
                 content_text = tag.get_text().strip()
                 all_contents.append(content_text)
-                print(tag.get_text())
+                time.sleep(0.1)
+
+            #날짜 저장
+            for tag in day:
+                day_text = tag.string.strip()
+                all_day.append(day_text)
+                time.sleep(0.1)
+
+            #뉴스 url 저장
+            for tag in news_url:
+                news_url_text = tag['href'].strip()
+                all_news_url.append(news_url_text)
                 time.sleep(0.1)
         else:
             print(f"페이지 {i} 크롤링 실패: 상태 코드 {response.status_code}")
     
-    return all_titles, all_contents
+    return all_titles, all_contents, all_day, all_news_url
 
 def summarize_text(text):
     """텍스트를 요약하는 함수"""
@@ -67,13 +81,16 @@ def summarize_text(text):
 # 메인 실행 코드
 # 기본값으로 설정된 키워드와 페이지 수 사용
 if __name__ == "__main__":
-    titles, contents = crawling(keyword='복지', page=3)
+    titles, contents, days, news_urls = crawling(keyword='복지', page = 2)
 
     print("\n===== 요약 결과 =====")
-    for i, (title, content) in enumerate(zip(titles, contents)):
-        print(f"\n[기사 {i+1}]")
-        print(f"제목: {title}")
+    for i, (title, content, day, news_url) in enumerate(zip(titles, contents, days, news_urls)):
+        print(f"\n[기사 {i+1}]\n")
+        print(f"제목: {title}\n")
         
         summary = summarize_text(content)
-        print(f"요약: {summary}")
+        print(f"요약: {summary}\n")
+        print(f"본문: {content}\n")
+        print(f"날짜: {day}\n")
+        print(f"url: {news_url}")
         print("-" * 50)
