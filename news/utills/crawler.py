@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
+from news.models import News
 
 print("==== 크롤러 실행 시작 ====")
 
@@ -94,3 +95,16 @@ if __name__ == "__main__":
         print(f"날짜: {day}\n")
         print(f"url: {news_url}")
         print("-" * 50)
+
+        a=News(
+            News_title=title,
+            News_summary=summary,
+            News_content=content,
+            News_day=day,
+            News_url=news_url
+        )
+        a.save()
+
+
+
+
