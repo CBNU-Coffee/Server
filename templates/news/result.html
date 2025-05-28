@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>검색 결과</title>
+  <link rel="stylesheet" href="{% static 'template/result.css' %}">
+</head>
+<body>
+  <h1>yaho! coffee - 검색 결과</h1>
+
+  <!-- 다시 검색 -->
+  <form method="get" action="{% url 'news:search' %}">
+    <input type="text" name="keyword" value="{{ keyword }}" placeholder="검색어 입력" />
+    <button class="search-button" onclick="goToResults()">검색</button>
+  </form>
+
+  <p><strong>검색어:</strong> {{ keyword }}</p>
+
+  <div class="headline-list">
+    {% for headline in headlines %}
+      <div class="headline-item">
+        <a href="{{ headline.url }}" target="_blank">{{ headline.title }}</a>
+      </div>
+    {% empty %}
+      <p>관련 뉴스가 없습니다.</p>
+    {% endfor %}
+  </div>
+  <script src="{% static 'template/test.js' %}"></script>
+</body>
+</html>
