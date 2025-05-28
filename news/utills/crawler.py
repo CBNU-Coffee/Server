@@ -81,8 +81,8 @@ def summarize_text(text):
 
 # 메인 실행 코드
 # 기본값으로 설정된 키워드와 페이지 수 사용
-if __name__ == "__main__":
-    titles, contents, days, news_urls = crawling(keyword='복지', page = 2)
+def start(keyword):
+    titles, contents, days, news_urls = crawling(keyword)
 
     print("\n===== 요약 결과 =====")
     for i, (title, content, day, news_url) in enumerate(zip(titles, contents, days, news_urls)):
@@ -104,7 +104,3 @@ if __name__ == "__main__":
             News_url=news_url
         )
         a.save()
-
-
-
-
