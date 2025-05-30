@@ -32,15 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'news.apps.NewsConfig', # 'news' 앱을 INSTALLED_APPS에 추가
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news',
-    'document'
+    'news.apps.NewsConfig', # 'news' 앱을 INSTALLED_APPS에 추가
 ]
 
 MIDDLEWARE = [
@@ -119,7 +117,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 TEMPLATES_URL = 'templates/'
 
 # Default primary key field type

@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import *
+from . import views
 
 app_name = 'news'
 
 urlpatterns = [
-    path('', index, name = "main"),
-    path('<str:search_keyword>/', search, name = "search"),
-    path('<str:search_keyword>/content', content, name = "content"),
+    path('', views.main, name = "home"),
+    path('search/', views.search, name='search'),
+    path('news/<int:news_id>/', views.detail, name='detail'),
 ]

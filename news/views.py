@@ -1,13 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from .utills.crawler import *
+from .models import News
 
-def index(request):
-    return render(request,'main.html')
+def main(request):
+    return render(request,'news/main.html')
 
 def search(request):
-    start(content=request.POST.get('content'))
-    return render(request, 'result.html')
+    keyword = request.GET.get('keyword').strip()
+    headlines=News.objects.filter(News_title__icontains=keyword) if keyword else []
+    return render(request, 'news/result.html', {
+        'keyword': keyword, 
+        'headlines': headlines
+    })
 
-def content(request):
-    return render(request, 'detail.html')
+def detail(request, news_id):
+    article = get_object_or_404(News, pk=news_id)
+    return render(request, 'news/detail.html', {'article': article})

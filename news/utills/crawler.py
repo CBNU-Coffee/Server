@@ -81,8 +81,9 @@ def summarize_text(text):
 
 # 메인 실행 코드
 # 기본값으로 설정된 키워드와 페이지 수 사용
-def start(keyword):
-    titles, contents, days, news_urls = crawling(keyword)
+
+if __name__ == "__main__":
+    titles, contents, days, news_urls = crawling(keyword='복지', page = 2)
 
     print("\n===== 요약 결과 =====")
     for i, (title, content, day, news_url) in enumerate(zip(titles, contents, days, news_urls)):
@@ -104,3 +105,20 @@ def start(keyword):
             News_url=news_url
         )
         a.save()
+
+
+# 데이터베이스 저장 확인 디버깅용, 쉘 실행 용 코드드
+# def run_and_save():
+#     titles, contents, days, urls = crawling(keyword='복지', page=2)
+
+#     for title, content, day, url in zip(titles, contents, days, urls):
+#         summary = summarize_text(content)
+#         News.objects.create(
+#             News_title=title,
+#             News_summary=summary,
+#             News_content=content,
+#             News_day=day,
+#             News_url=url
+#         )
+
+
