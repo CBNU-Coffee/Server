@@ -53,3 +53,42 @@ function readText(text) {
   utter.lang = 'ko-KR';
   synth.speak(utter);
 }
+
+// 상세 페이지에서 헤드라인 클릭 시 이동
+function showTab(tab) {
+  const fullContent = document.getElementById('full');
+  const summaryContent = document.getElementById('summary');
+  const tabs = document.querySelectorAll('.tab');
+
+  // 탭 버튼 클래스 설정
+  tabs.forEach(t => {
+    if (t.dataset.tab === tab) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+  });
+
+  // 콘텐츠 탭 활성화
+  if (tab === 'full') {
+    fullContent.style.display = 'block';
+    fullContent.classList.add('active');
+    summaryContent.style.display = 'none';
+    summaryContent.classList.remove('active');
+  } else {
+    summaryContent.style.display = 'block';
+    summaryContent.classList.add('active');
+    fullContent.style.display = 'none';
+    fullContent.classList.remove('active');
+  }
+}
+
+// 상세 페이지에서 텍스트를 읽어주는 기능
+function readCurrentTabText() {
+  const currentTab = document.querySelector('.tab-content.active');
+  const text = currentTab ? currentTab.innerText.trim() : '';
+  
+  // 이 부분은 API에 텍스트 넘겨주는 코드로 대체해야 함
+  console.log("API로 보낼 텍스트:", text);
+  // 예: fetch('/tts-api/', { method: 'POST', body: JSON.stringify({ text }) })
+}

@@ -23,12 +23,12 @@
   </div>
 
   <div class="search-container">
-    <div class="search-box">
-      <input id="mainSearchInput" class="search-input" type="text" name="keyword" placeholder="insert keyword" />
-      <button class="search-button" onclick="goToResults()">
+    <form onsubmit="goToResults(); return false;" class="search-box">
+      <input id="mainSearchInput" class="search-input" type="text" name="keyword" placeholder="insert keyword" autocomplete="off"/>
+      <button type="submit" class="search-button">
         <img src="{% static 'image/돋보기.png' %}" alt="search">
       </button>
-    </div>
+    </form>
   </div>
 
   <div class="search-caption">Search the news!</div>

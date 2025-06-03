@@ -11,10 +11,10 @@
   <nav class="navbar">
     <div class="logo-area">
       <img src="{% static 'image/로고.png' %}" alt="logo" class="logo" />
-      <span class="brand-name">coffee</span>
+      <span class="logo-text">coffee</span>
     </div>
     <div class="menu-area">
-      <a href="#" class="login">log in</a>
+      <span class="login-text">log in</span>
       <img src="{% static 'image/메뉴.png' %}" alt="menu" class="menu-icon" />
     </div>
   </nav>
@@ -36,8 +36,8 @@
   <!-- 콘텐츠 영역 -->
   <div class="content-box">
     <div class="tab-buttons">
-      <button class="tab active" onclick="showTab('full')">전문</button>
-      <button class="tab" onclick="showTab('summary')">요약</button>
+      <button class="tab active" data-tab="full" onclick="showTab('full')">전문</button>
+      <button class="tab" data-tab="summary" onclick="showTab('summary')">요약</button>
     </div>
 
     <div class="tab-content" id="full">

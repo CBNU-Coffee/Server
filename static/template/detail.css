@@ -12,7 +12,7 @@ body {
   align-items: center;
   padding: 16px 24px;
   background: none;
-  color: black;
+  color: #4f4000;
 }
 
 .logo-area {
@@ -25,7 +25,12 @@ body {
   margin-right: 8px;
 }
 
-.brand-name {
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login-text {
   font-size: 20px;
   font-weight: bold;
 }
@@ -74,7 +79,7 @@ body {
 .content-box {
   max-width: 800px;
   margin: auto;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5);
   padding: 24px;
   border-radius: 10px;
   margin-bottom: 48px;
@@ -88,13 +93,13 @@ body {
 .tab {
   padding: 10px 20px;
   border: none;
-  background-color: #eee;
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   font-weight: bold;
 }
 
 .tab.active {
-  background-color: #fff;
+  background-color: #eee;
   border-bottom: 2px solid #ff9e2c;
 }
 
@@ -113,4 +118,12 @@ body {
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content#full {
+  display: block;
 }
