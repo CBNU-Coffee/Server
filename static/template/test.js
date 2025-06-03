@@ -54,14 +54,15 @@ function readText(text) {
   synth.speak(utter);
 }
 
-// 상세 페이지에서 헤드라인 클릭 시 이동
+// 상세 페이지로 이동하는 함수
 function showTab(tab) {
   const fullContent = document.getElementById('full');
   const summaryContent = document.getElementById('summary');
   const tabs = document.querySelectorAll('.tab');
 
-  // 탭 버튼 클래스 설정
+  // 탭 버튼 강조
   tabs.forEach(t => {
+    console.log("탭 클릭:", tab); // 디버깅용
     if (t.dataset.tab === tab) {
       t.classList.add('active');
     } else {
@@ -69,16 +70,12 @@ function showTab(tab) {
     }
   });
 
-  // 콘텐츠 탭 활성화
+  // 콘텐츠 토글
   if (tab === 'full') {
-    fullContent.style.display = 'block';
     fullContent.classList.add('active');
-    summaryContent.style.display = 'none';
     summaryContent.classList.remove('active');
   } else {
-    summaryContent.style.display = 'block';
     summaryContent.classList.add('active');
-    fullContent.style.display = 'none';
     fullContent.classList.remove('active');
   }
 }

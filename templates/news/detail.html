@@ -20,18 +20,20 @@
   </nav>
 
   <!-- 헤드라인과 아이콘/조회수 -->
-  <section class="headline-box">
-  <div class="headline-left">
-    <h1 class="headline">{{ article.News_title }}</h1>
-    <span class="views">{{ article.views }} views {{ article.News_day }}</span>
-  </div>
-  <div class="headline-right">
-    <a href="#"><img src="{% static 'image/하트.png' %}" alt="Heart" class="icon" /></a>
-    <a href="#"><img src="{% static 'image/북마크.png' %}" alt="Bookmark" class="icon" /></a>
-    <a href="#"><img src="{% static 'image/공유.png' %}" alt="Share" class="icon" /></a>
-    <a href="#"><img src="{% static 'image/댓글.png' %}" alt="Comment" class="icon" /></a>
-  </div>
-</section>
+  <section class="headline-container">
+  <!-- 왼쪽: 텍스트 박스 -->
+    <div class="headline-box">
+      <h1 class="headline">{{ article.News_title }}</h1>
+      <div class="views">{{ article.views }} views {{ article.News_day }}</div>
+    </div>
+  <!-- 오른쪽: 아이콘들 -->
+    <div class="headline-icons">
+      <a href="#"><img src="{% static 'image/하트.png' %}" alt="Heart" class="icon" /></a>
+      <a href="#"><img src="{% static 'image/북마크.png' %}" alt="Bookmark" class="icon" /></a>
+      <a href="#"><img src="{% static 'image/공유.png' %}" alt="Share" class="icon" /></a>
+      <a href="#"><img src="{% static 'image/댓글.png' %}" alt="Comment" class="icon" /></a>
+    </div>
+  </section>
 
   <!-- 콘텐츠 영역 -->
   <div class="content-box">
@@ -40,10 +42,10 @@
       <button class="tab" data-tab="summary" onclick="showTab('summary')">요약</button>
     </div>
 
-    <div class="tab-content" id="full">
+    <div class="tab-content active" id="full">
       <p>{{ article.News_content }}</p>
     </div>
-    <div class="tab-content" id="summary" style="display:none;">
+    <div class="tab-content" id="summary">
       <p>{{ article.News_summary }}</p>
     </div>
 
