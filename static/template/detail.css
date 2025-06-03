@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #ff9e2c, #1e1e1e);
   color: #222;
 }
