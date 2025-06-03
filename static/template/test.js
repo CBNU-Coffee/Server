@@ -1,15 +1,14 @@
-// 메인 페이지에서 검색어 입력 후 결과 페이지 이동
+// ✅ 메인 페이지에서 검색 후 결과 페이지로 이동
 function goToResults() {
   const keyword = document.getElementById("mainSearchInput").value.trim();
   if (!keyword) {
     alert("검색어를 입력하세요!");
     return;
   }
-  // Django URL 패턴에 맞춰서 쿼리스트링으로 이동
   window.location.href = `/search/?keyword=${encodeURIComponent(keyword)}`;
 }
 
-// 결과 페이지 로드 시 실행, 검색어가 없으면 메시지 출력
+// ✅ 결과 페이지 로드시 실행 (검색어 없을 경우 안내)
 function loadResultsPage() {
   const params = new URLSearchParams(window.location.search);
   const keyword = params.get("keyword");
@@ -20,8 +19,7 @@ function loadResultsPage() {
     return;
   }
 
-  // 참고: Django 뷰에서 받은 실제 결과를 템플릿에서 렌더링하는 것이 권장됨
-  // 만약 JS에서 동적 렌더링이 필요하다면 아래 예시처럼 하되, 실제 사용 시 서버 데이터로 대체 필요
+  // 예시 데이터 (향후 서버 데이터로 대체 예정)
   const headlines = [
     `${keyword} 관련 헤드라인 1`,
     `${keyword} 관련 헤드라인 2`,
@@ -29,26 +27,63 @@ function loadResultsPage() {
   ];
 
   const container = document.getElementById("resultsContainer");
-  container.innerHTML = ""; // 초기화
+  container.innerHTML = "";
 
   headlines.forEach(title => {
     const div = document.createElement("div");
     div.textContent = title;
     div.classList.add("headline-item");
     div.style.cursor = "pointer";
-    div.onclick = () => goToDetail(title);
+    div.onclick = () => goToDetail(title); // 이 함수가 있다면 정의 필요
     container.appendChild(div);
   });
 }
 
-// 상세 페이지에서 텍스트를 음성으로 읽어주는 함수 (TTS)
-function readText(text) {
+// ✅ HTML에서 직접 호출되는 탭 전환 함수
+window.showTab = function (tab) {
+  const fullContent = document.getElementById('full');
+  const summaryContent = document.getElementById('summary');
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(t => {
+    if (t.dataset.tab === tab) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+  });
+
+  if (tab === 'full') {
+    fullContent.classList.add('active');
+    summaryContent.classList.remove('active');
+  } else {
+    summaryContent.classList.add('active');
+    fullContent.classList.remove('active');
+  }
+};
+
+// ✅ HTML에서 호출되는 TTS 읽기 기능 (브라우저 내장)
+window.readText = function (text) {
   if (!text) return;
   const synth = window.speechSynthesis;
-  if (synth.speaking) {
-    synth.cancel();
-  }
+  if (synth.speaking) synth.cancel();
+
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'ko-KR';
   synth.speak(utter);
+};
+
+// ✅ 향후 API 연동용: 현재 탭의 텍스트 읽기 (API 호출용)
+function readCurrentTabText() {
+  const currentTab = document.querySelector('.tab-content.active');
+  const text = currentTab ? currentTab.innerText.trim() : '';
+
+  console.log("API로 보낼 텍스트:", text);
+
+  // 향후 예시: API 호출
+  // fetch('/tts-api/', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ text })
+  // });
 }
