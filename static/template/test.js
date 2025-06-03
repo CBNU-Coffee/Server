@@ -1,4 +1,4 @@
-// ✅ 메인 페이지에서 검색 후 결과 페이지로 이동
+// 메인 페이지에서 검색 후 결과 페이지로 이동
 function goToResults() {
   const keyword = document.getElementById("mainSearchInput").value.trim();
   if (!keyword) {
@@ -8,7 +8,7 @@ function goToResults() {
   window.location.href = `/search/?keyword=${encodeURIComponent(keyword)}`;
 }
 
-// ✅ 결과 페이지 로드시 실행 (검색어 없을 경우 안내)
+// 결과 페이지 로드시 실행 (검색어 없을 경우 안내)
 function loadResultsPage() {
   const params = new URLSearchParams(window.location.search);
   const keyword = params.get("keyword");
@@ -39,7 +39,7 @@ function loadResultsPage() {
   });
 }
 
-// ✅ HTML에서 직접 호출되는 탭 전환 함수
+// HTML에서 직접 호출되는 탭 전환 함수
 window.showTab = function (tab) {
   const fullContent = document.getElementById('full');
   const summaryContent = document.getElementById('summary');
@@ -62,7 +62,7 @@ window.showTab = function (tab) {
   }
 };
 
-// ✅ HTML에서 호출되는 TTS 읽기 기능 (브라우저 내장)
+// HTML에서 호출되는 TTS 읽기 기능 (브라우저 내장)
 window.readText = function (text) {
   if (!text) return;
   const synth = window.speechSynthesis;
@@ -73,17 +73,10 @@ window.readText = function (text) {
   synth.speak(utter);
 };
 
-// ✅ 향후 API 연동용: 현재 탭의 텍스트 읽기 (API 호출용)
+// 향후 API 연동용: 현재 탭의 텍스트 읽기 (API 호출용)
 function readCurrentTabText() {
   const currentTab = document.querySelector('.tab-content.active');
   const text = currentTab ? currentTab.innerText.trim() : '';
 
   console.log("API로 보낼 텍스트:", text);
-
-  // 향후 예시: API 호출
-  // fetch('/tts-api/', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ text })
-  // });
 }
