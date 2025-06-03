@@ -4,24 +4,52 @@
 <head>
   <meta charset="UTF-8" />
   <title>뉴스 상세 보기</title>
-  <link rel="stylesheet" href="{% static 'detail.css' %}">
+  <link rel="stylesheet" href="{% static 'template/detail.css' %}">
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="headline">{{ article.News_title }}</div>
-      <div class="fulltext">{{ article.News_content }}</div>
+  <!-- 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="logo-area">
+      <img src="{% static 'image/로고.png' %}" alt="logo" class="logo" />
+      <span class="brand-name">coffee</span>
     </div>
-    <div class="right">
-      <div>
-        <h3>요약</h3>
-        <div class="summary">{{ article.News_summary }}</div>
-      </div>
-      <div class="buttons">
-        <button onclick="readText('{{ article.News_summary|escapejs }}')">요약 읽기</button>
-        <button onclick="readText('{{ article.News_content|escapejs }}')">전문 읽기</button>
-        <button class="back-button" onclick="window.history.back()">← 이전 결과로 돌아가기</button>
-      </div>
+    <div class="menu-area">
+      <a href="#" class="login">log in</a>
+      <img src="{% static 'image/메뉴.png' %}" alt="menu" class="menu-icon" />
+    </div>
+  </nav>
+
+  <!-- 헤드라인과 아이콘/조회수 -->
+  <section class="headline-box">
+  <div class="headline-left">
+    <h1 class="headline">{{ article.News_title }}</h1>
+    <span class="views">{{ article.views }} views {{ article.News_day }}</span>
+  </div>
+  <div class="headline-right">
+    <a href="#"><img src="{% static 'image/하트.png' %}" alt="Heart" class="icon" /></a>
+    <a href="#"><img src="{% static 'image/북마크.png' %}" alt="Bookmark" class="icon" /></a>
+    <a href="#"><img src="{% static 'image/공유.png' %}" alt="Share" class="icon" /></a>
+    <a href="#"><img src="{% static 'image/댓글.png' %}" alt="Comment" class="icon" /></a>
+  </div>
+</section>
+
+  <!-- 콘텐츠 영역 -->
+  <div class="content-box">
+    <div class="tab-buttons">
+      <button class="tab active" onclick="showTab('full')">전문</button>
+      <button class="tab" onclick="showTab('summary')">요약</button>
+    </div>
+
+    <div class="tab-content" id="full">
+      <p>{{ article.News_content }}</p>
+    </div>
+    <div class="tab-content" id="summary" style="display:none;">
+      <p>{{ article.News_summary }}</p>
+    </div>
+
+    <div class="read-controls">
+      <button class="read-btn" onclick="readText('{{ article.News_content|escapejs }}')">읽기</button>
+      <button class="back-btn" onclick="window.history.back()">← 이전 결과로 돌아가기</button>
     </div>
   </div>
 

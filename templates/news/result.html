@@ -10,10 +10,9 @@
   <header>
     <div class="top-bar">
       <img src="{% static 'image/로고.png' %}" alt="coffee logo" class="logo" />
-      <span class="brand">coffee</span>
+      <span class="logo-text">coffee</span>
       <div class="nav-right">
-        <!--일단은 로그인 기능 ㄴㄴ-->
-        <span class="login-link">log in</span>
+        <span class="login-text">log in</span>
         <img src="{% static 'image/메뉴.png' %}" alt="menu icon" class="menu-icon">
       </div>
     </div>
@@ -34,7 +33,7 @@
       {% if headlines %}
         {% for headline in headlines %}
           <div class="headline-box">
-            <a href="{{ headline.News_url }}" target="_blank" class="headline-title">{{ headline.News_title }}</a>
+            <a href="{% url 'news:detail' headline.id %}" class="headline-title">{{ headline.News_title }}</a>
             <div class="headline-meta">
               <span class="headline-views">{{ headline.News_views }} views</span>
               <span class="headline-date">{{ headline.News_day }}</span>

@@ -18,12 +18,16 @@ body {
   justify-content: space-between;
 }
 
-.logo {
-  height: 32px;
-  vertical-align: middle;
+.logo-brand {
+  display: flex;
+  align-items: center;
 }
 
-.brand {
+.logo {
+  height: 32px;
+}
+
+.logo-text {
   font-size: 20px;
   font-weight: bold;
   margin-left: 8px;
@@ -36,7 +40,7 @@ body {
   gap: 16px;
 }
 
-.login-link {
+.login-text {
   color: #000;
   text-decoration: none;
   font-weight: bold;
