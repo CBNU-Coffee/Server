@@ -7,25 +7,46 @@
   <link rel="stylesheet" href="{% static 'template/result.css' %}">
 </head>
 <body>
-  <h1>yaho! coffee - 검색 결과</h1>
-
-  <!-- 다시 검색 -->
-  <form method="get" action="{% url 'news:search' %}">
-    <input type="text" name="keyword" value="{{ keyword }}" placeholder="검색어 입력" />
-    <button class="search-button" onclick="goToResults()">검색</button>
-  </form>
-
-  <p><strong>검색어:</strong> {{ keyword }}</p>
-
-  <div class="headline-list">
-    {% for headline in headlines %}
-      <div class="headline-item">
-        <a href="{{ headline.url }}" target="_blank">{{ headline.title }}</a>
+  <header>
+    <div class="top-bar">
+      <img src="{% static 'image/로고.png' %}" alt="coffee logo" class="logo" />
+      <span class="brand">coffee</span>
+      <div class="nav-right">
+        <!--일단은 로그인 기능 ㄴㄴ-->
+        <span class="login-link">log in</span>
+        <img src="{% static 'image/메뉴.png' %}" alt="menu icon" class="menu-icon">
       </div>
-    {% empty %}
-      <p>관련 뉴스가 없습니다.</p>
-    {% endfor %}
-  </div>
+    </div>
+
+    <form method="get" action="{% url 'news:search' %}" class="search-form">
+      <input type="text" name="keyword" value="{{ keyword }}" placeholder="insert keyword" class="search-input" />
+      <button type="submit" class="search-button">
+        <img src="{% static 'image/돋보기.png' %}" alt="검색" />
+      </button>
+    </form>
+  </header>
+
+  <main>
+    <p class="search-label">Search News for "<strong>{{ keyword }}</strong>"</p>
+    <div class="sort-option">↓ Relevance</div>
+
+    <div class="headline-list">
+      {% if headlines %}
+        {% for headline in headlines %}
+          <div class="headline-box">
+            <a href="{{ headline.News_url }}" target="_blank" class="headline-title">{{ headline.News_title }}</a>
+            <div class="headline-meta">
+              <span class="headline-views">{{ headline.News_views }} views</span>
+              <span class="headline-date">{{ headline.News_day }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>관련 뉴스가 없습니다.</p>
+      {% endif %}
+    </div>
+  </main>
+
   <script src="{% static 'template/test.js' %}"></script>
 </body>
 </html>

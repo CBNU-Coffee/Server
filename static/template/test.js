@@ -22,6 +22,7 @@ function loadResultsPage() {
 
   // 참고: Django 뷰에서 받은 실제 결과를 템플릿에서 렌더링하는 것이 권장됨
   // 만약 JS에서 동적 렌더링이 필요하다면 아래 예시처럼 하되, 실제 사용 시 서버 데이터로 대체 필요
+  // 따라서 크롤링 완성 후 수정 예정정
   const headlines = [
     `${keyword} 관련 헤드라인 1`,
     `${keyword} 관련 헤드라인 2`,
@@ -41,7 +42,7 @@ function loadResultsPage() {
   });
 }
 
-// 상세 페이지에서 텍스트를 음성으로 읽어주는 함수 (TTS)
+// 상세 페이지에서 텍스트를 음성으로 읽어주는 함수 (TTS) // 이건 api 사용 예정
 function readText(text) {
   if (!text) return;
   const synth = window.speechSynthesis;

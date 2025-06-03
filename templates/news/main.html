@@ -7,11 +7,31 @@
   <link rel="stylesheet" href="{% static 'template/main.css' %}">
 </head>
 <body>
-  <h1>yaho! coffee</h1>
-  <div class="search-box">
-    <input id="mainSearchInput" class="search-input" type="text" name="keyword" placeholder="검색어 입력" />
-    <button class="search-button" onclick="goToResults()">검색</button>
+  <div class="top-bar">
+    <div class="logo-area">
+      <img src="{% static 'image/로고.png' %}" alt="logo">
+      <div class="logo-text">coffee</div>
+    </div>
+    <div class="login-menu">
+      <div class="login-text">log in</div>
+      <img src="{% static 'image/메뉴.png' %}" alt="menu" class="menu-icon">
+    </div>
   </div>
+
+  <div class="main-logo">
+    <img src="{% static 'image/로고.png' %}" alt="main coffee logo">
+  </div>
+
+  <div class="search-container">
+    <div class="search-box">
+      <input id="mainSearchInput" class="search-input" type="text" name="keyword" placeholder="insert keyword" />
+      <button class="search-button" onclick="goToResults()">
+        <img src="{% static 'image/돋보기.png' %}" alt="search">
+      </button>
+    </div>
+  </div>
+
+  <div class="search-caption">Search the news!</div>
 
   <script src="{% static 'template/test.js' %}"></script>
 </body>
