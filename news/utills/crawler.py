@@ -1,8 +1,22 @@
+import os, sys, django
+
+# ── 프로젝트 루트(= manage.py 있는 폴더) 경로를 sys.path에 추가 ──
+current_dir = os.path.dirname(__file__)
+project_root = os.path.abspath(os.path.join(current_dir, "..", ".."))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# ── Django settings 모듈을 지정하고, 환경 초기화 ──
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+django.setup()
+#---------------------------------------------------------------------
+
 import requests
 from bs4 import BeautifulSoup
 import time
 from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration
 from news.models import News
+
 
 print("==== 크롤러 실행 시작 ====")
 
@@ -84,7 +98,7 @@ def summarize_text(text):
 
 if __name__ == "__main__":
     titles, contents, days, news_urls = crawling(keyword='복지', page = 2)
-    keyword='복지'
+    kkeyword='복지'
 
     print("\n===== 요약 결과 =====")
     for i, (title, content, day, news_url) in enumerate(zip(titles, contents, days, news_urls)):
@@ -104,7 +118,7 @@ if __name__ == "__main__":
             News_content=content,
             News_day=day,
             News_url=news_url,
-            News_keyword=keyword
+            News_keyword=kkeyword
         )
         a.save()
 
