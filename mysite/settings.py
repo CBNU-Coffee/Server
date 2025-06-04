@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news.apps.NewsConfig', # 'news' 앱을 INSTALLED_APPS에 추가
+    'news', # 'news' 앱을 INSTALLED_APPS에 추가
 ]
 
 MIDDLEWARE = [
