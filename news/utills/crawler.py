@@ -84,6 +84,7 @@ def summarize_text(text):
 
 if __name__ == "__main__":
     titles, contents, days, news_urls = crawling(keyword='복지', page = 2)
+    keyword='복지'
 
     print("\n===== 요약 결과 =====")
     for i, (title, content, day, news_url) in enumerate(zip(titles, contents, days, news_urls)):
@@ -102,7 +103,8 @@ if __name__ == "__main__":
             News_summary=summary,
             News_content=content,
             News_day=day,
-            News_url=news_url
+            News_url=news_url,
+            News_keyword=keyword
         )
         a.save()
 

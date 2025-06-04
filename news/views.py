@@ -16,3 +16,4 @@ def search(request):
 def detail(request, news_id):
     article = get_object_or_404(News, pk=news_id)
     return render(request, 'news/detail.html', {'article': article})
+
