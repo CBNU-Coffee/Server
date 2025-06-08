@@ -7,10 +7,3 @@ class News(models.Model):
     News_day=models.TextField()
     News_url=models.TextField()
     News_keyword=models.TextField(blank=True)
-
-
-class User(models.Model):
-    User_ID=models.CharField()
-    User_Password=models.TextField()
-
-

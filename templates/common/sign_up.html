@@ -1,0 +1,329 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/sign_up.css' %}">
+<!-- Main Content -->
+<main class="main-container">
+    <div class="signup-container">
+        <!-- Signup Header -->
+        <div class="signup-header">
+            <svg class="signup-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <h1 class="signup-title">회원가입</h1>
+            <p class="signup-subtitle">Coffee News와 함께 시작하세요</p>
+        </div>
+
+        <!-- Global Messages -->
+        <div id="global-message" class="global-message" role="alert" aria-live="polite"></div>
+
+        <!-- Signup Form -->
+        <form class="signup-form" id="signup-form" method="POST" novalidate>
+            {% csrf_token %}
+            <!-- Name -->
+            <div class="form-group">
+                <label for="fullName" class="form-label required">이름</label>
+                <input 
+                    type="text" 
+                    id="fullName" 
+                    name="fullName" 
+                    class="form-input" 
+                    placeholder="이름을 입력하세요"
+                    required
+                    autocomplete="name"
+                >
+                <div class="field-message" id="fullName-message"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email" class="form-label required">이메일</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="이메일을 입력하세요"
+                    required
+                    autocomplete="email"
+                >
+                <div class="field-message" id="email-message"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="form-label required">비밀번호</label>
+                <div class="password-container">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="비밀번호를 입력하세요"
+                        required
+                        autocomplete="new-password"
+                    >
+                    <button 
+                        type="button" 
+                        class="password-toggle" 
+                        id="password-toggle"
+                        aria-label="비밀번호 보기/숨기기"
+                    >
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="password-strength" id="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strength-fill"></div>
+                    </div>
+                    <div class="strength-text" id="strength-text">비밀번호를 입력하세요</div>
+                </div>
+                <div class="field-message" id="password-message"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label required">비밀번호 확인</label>
+                <div class="password-container">
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        class="form-input" 
+                        placeholder="비밀번호를 다시 입력하세요"
+                        required
+                        autocomplete="new-password"
+                    >
+                    <button 
+                        type="button" 
+                        class="password-toggle" 
+                        id="confirm-password-toggle"
+                        aria-label="비밀번호 확인 보기/숨기기"
+                    >
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="field-message" id="confirmPassword-message"></div>
+            </div>
+
+            <button type="submit" class="signup-btn" id="signup-submit">
+                <span id="signup-text">회원가입</span>
+                <span id="signup-loading" class="loading" style="display: none;"></span>
+            </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-link">
+            <p class="login-text">이미 계정이 있으신가요?</p>
+            <a href="login.html" class="login-btn">로그인</a>
+        </div>
+    </div>
+</main>
+<script>
+    
+// Form elements
+const signupForm = document.getElementById('signup-form');
+const globalMessage = document.getElementById('global-message');
+const signupSubmit = document.getElementById('signup-submit');
+const signupText = document.getElementById('signup-text');
+const signupLoading = document.getElementById('signup-loading');
+
+// Input elements
+const fullName = document.getElementById('fullName');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
+
+// Password toggles
+const passwordToggle = document.getElementById('password-toggle');
+const confirmPasswordToggle = document.getElementById('confirm-password-toggle');
+
+// Password strength elements
+const strengthFill = document.getElementById('strength-fill');
+const strengthText = document.getElementById('strength-text');
+
+// Password toggle functionality
+function setupPasswordToggle(toggleBtn, inputField) {
+    toggleBtn.addEventListener('click', () => {
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+        
+        const icon = toggleBtn.querySelector('svg');
+        if (type === 'text') {
+            icon.innerHTML = `
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+            `;
+        } else {
+            icon.innerHTML = `
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+            `;
+        }
+    });
+}
+
+setupPasswordToggle(passwordToggle, password);
+setupPasswordToggle(confirmPasswordToggle, confirmPassword);
+
+// Password strength checker
+function checkPasswordStrength(password) {
+    let score = 0;
+    let feedback = [];
+
+    if (password.length >= 8) score += 1;
+    else feedback.push('8자 이상');
+
+    if (/[a-z]/.test(password)) score += 1;
+    else feedback.push('소문자');
+
+    if (/[A-Z]/.test(password)) score += 1;
+    else feedback.push('대문자');
+
+    if (/[0-9]/.test(password)) score += 1;
+    else feedback.push('숫자');
+
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+    else feedback.push('특수문자');
+
+    return { score, feedback };
+}
+
+password.addEventListener('input', () => {
+    const value = password.value;
+    const { score, feedback } = checkPasswordStrength(value);
+
+    let width = 0;
+    let className = '';
+    let text = '';
+
+    if (value.length === 0) {
+        text = '비밀번호를 입력하세요';
+    } else if (score <= 2) {
+        width = 33;
+        className = 'strength-weak';
+        text = `약함 (${feedback.join(', ')} 필요)`;
+    } else if (score <= 4) {
+        width = 66;
+        className = 'strength-medium';
+        text = `보통 (${feedback.join(', ')} 필요)`;
+    } else {
+        width = 100;
+        className = 'strength-strong';
+        text = '강함';
+    }
+
+    strengthFill.style.width = width + '%';
+    strengthFill.className = `strength-fill ${className}`;
+    strengthText.textContent = text;
+    strengthText.className = `strength-text ${className}`;
+});
+
+// Validation functions
+function validateName(name) {
+    return name.trim().length >= 2;
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validatePassword(password) {
+    const { score } = checkPasswordStrength(password);
+    return password.length >= 8 && score >= 3;
+}
+
+function showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const messageEl = document.getElementById(fieldId + '-message');
+    
+    field.classList.add('error');
+    field.classList.remove('success');
+    messageEl.textContent = message;
+    messageEl.className = 'field-message error';
+}
+
+function showFieldSuccess(fieldId) {
+    const field = document.getElementById(fieldId);
+    const messageEl = document.getElementById(fieldId + '-message');
+    
+    field.classList.add('success');
+    field.classList.remove('error');
+    messageEl.className = 'field-message';
+}
+
+function clearFieldMessage(fieldId) {
+    const field = document.getElementById(fieldId);
+    const messageEl = document.getElementById(fieldId + '-message');
+    
+    field.classList.remove('error', 'success');
+    messageEl.className = 'field-message';
+}
+
+function showGlobalMessage(message, type) {
+    globalMessage.textContent = message;
+    globalMessage.className = `global-message ${type}`;
+}
+
+function hideGlobalMessage() {
+    globalMessage.className = 'global-message';
+}
+
+// Real-time validation
+fullName.addEventListener('blur', () => {
+    if (!validateName(fullName.value)) {
+        showFieldError('fullName', '이름은 2자 이상이어야 합니다.');
+    } else {
+        showFieldSuccess('fullName');
+    }
+});
+
+email.addEventListener('blur', () => {
+    if (!email.value) {
+        showFieldError('email', '이메일을 입력해주세요.');
+    } else if (!validateEmail(email.value)) {
+        showFieldError('email', '올바른 이메일 형식을 입력해주세요.');
+    } else {
+        showFieldSuccess('email');
+    }
+});
+
+password.addEventListener('blur', () => {
+    if (!password.value) {
+        showFieldError('password', '비밀번호를 입력해주세요.');
+    } else if (!validatePassword(password.value)) {
+        showFieldError('password', '비밀번호는 8자 이상이며 대소문자, 숫자, 특수문자를 포함해야 합니다.');
+    } else {
+        showFieldSuccess('password');
+    }
+});
+
+confirmPassword.addEventListener('blur', () => {
+    if (!confirmPassword.value) {
+        showFieldError('confirmPassword', '비밀번호 확인을 입력해주세요.');
+    } else if (confirmPassword.value !== password.value) {
+        showFieldError('confirmPassword', '비밀번호가 일치하지 않습니다.');
+    } else {
+        showFieldSuccess('confirmPassword');
+    }
+});
+
+// Clear validation on focus
+[fullName, email, password, confirmPassword].forEach(field => {
+    field.addEventListener('focus', () => {
+        clearFieldMessage(field.id);
+        hideGlobalMessage();
+    });
+});
+</script>
+{% endblock %}

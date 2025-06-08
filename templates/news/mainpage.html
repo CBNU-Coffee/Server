@@ -1,0 +1,154 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main class="main-container">
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-heading">
+            <h2 class="search-title">오늘의 뉴스를 찾아보세요</h2>
+            <p class="search-description">관심 있는 주제의 뉴스를 쉽고 빠르게 검색하고 읽어보세요</p>
+        </div>
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" class="search-input" placeholder="뉴스 검색..." aria-label="뉴스 검색">
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <h3 class="categories-title">뉴스 카테고리</h3>
+        <div class="categories-container">
+            <button class="category-btn active" data-category="all">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                전체
+            </button>
+            <button class="category-btn" data-category="politics">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                정치
+            </button>
+            <button class="category-btn" data-category="economy">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+                경제
+            </button>
+            <button class="category-btn" data-category="society">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                사회
+            </button>
+            <button class="category-btn" data-category="tech">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                IT/과학
+            </button>
+        </div>
+    </section>
+
+    <!-- Featured News -->
+    <section class="news-section">
+        <div class="news-header">
+            <h3 class="news-title">주요 뉴스</h3>
+            <div class="news-badge">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                실시간 업데이트
+            </div>
+        </div>
+
+        <div class="news-grid">
+            <!-- News Card 1 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop" 
+                        alt="경제 전망 관련 이미지" class="news-image">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">경제</span>
+                        <span class="news-time">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            2시간 전
+                        </span>
+                    </div>
+                    <h4 class="news-card-title">2024년 경제 전망, 전문가들이 예측하는 주요 변화</h4>
+                    <p class="news-summary">올해 경제 성장률과 주요 산업 동향에 대한 전문가 분석을 통해 앞으로의 경제 상황을 전망해봅니다.</p>
+                    <div class="news-footer">
+                        <span class="news-read-time">읽는 시간: 3분</span>
+                        <a href="news-detail.html" class="news-read-more">자세히 보기</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 2 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1677442135136-760c813a878d?w=600&h=400&fit=crop" 
+                        alt="AI 기술 관련 이미지" class="news-image">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">IT/과학</span>
+                        <span class="news-time">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            4시간 전
+                        </span>
+                    </div>
+                    <h4 class="news-card-title">AI 기술의 새로운 돌파구, 일상생활 변화 예고</h4>
+                    <p class="news-summary">최신 인공지능 기술 발전이 우리 일상에 미칠 영향과 앞으로의 변화 방향을 살펴봅니다.</p>
+                    <div class="news-footer">
+                        <span class="news-read-time">읽는 시간: 5분</span>
+                        <a href="news-detail.html" class="news-read-more">자세히 보기</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 3 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=400&fit=crop" 
+                        alt="지역사회 봉사활동 관련 이미지" class="news-image">
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">사회</span>
+                        <span class="news-time">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            6시간 전
+                        </span>
+                    </div>
+                    <h4 class="news-card-title">지역사회 봉사활동 확산, 시민 참여 늘어나</h4>
+                    <p class="news-summary">전국 각지에서 시민들의 자발적인 봉사활동이 증가하며 지역사회에 긍정적인 변화를 만들고 있습니다.</p>
+                    <div class="news-footer">
+                        <span class="news-read-time">읽는 시간: 4분</span>
+                        <a href="news-detail.html" class="news-read-more">자세히 보기</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Load More -->
+    <div class="load-more">
+        <button class="load-more-btn">더 많은 뉴스 보기</button>
+    </div>
+</main>
+<script src="{% static 'js/mainpage.js' %}"></script>
+{% endblock %}

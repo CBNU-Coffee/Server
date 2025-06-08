@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee News - 일상 속 커피 한잔처럼 뉴스를</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/detailpage.css' %}">
+  <link rel="stylesheet" href="{% static 'css/results.css' %}">
+</head>
+
+<body>
+    <!-- navigation bar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                    <line x1="6" y1="1" x2="6" y2="4"/>
+                    <line x1="10" y1="1" x2="10" y2="4"/>
+                    <line x1="14" y1="1" x2="14" y2="4"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>Coffee</h1>
+                    <p>일상 속 커피 한잔처럼 뉴스를</p>
+                </div>
+            </a>
+            <a href="{% url 'common:sign_in' %}">
+                <button class="menu-btn">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'common:sign_out' %}">{{ user.username }} (로그아웃)</a>
+                    {% else %}
+                    <a href="{% url 'common:sign_in' %}">로그인</a>
+                    {% endif %}
+                </button>
+            </a>
+        </div>
+    </header>
+    <!-- end nav -->
+    {% block content %}
+    {% endblock %}
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <svg class="footer-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                    <line x1="6" y1="1" x2="6" y2="4"/>
+                    <line x1="10" y1="1" x2="10" y2="4"/>
+                    <line x1="14" y1="1" x2="14" y2="4"/>
+                </svg>
+                <h4 class="footer-title">Coffee News</h4>
+            </div>
+            <p class="footer-description">일상 속 커피 한잔처럼 편안하게 뉴스를 즐기세요</p>
+            <p class="footer-copyright">© 2025 Coffee Team. 모든 권리 보유.</p>
+        </div>
+    </footer>
+</body>
+</html>

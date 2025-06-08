@@ -1,0 +1,256 @@
+/* Main Content */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.article-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fef3c7;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.article-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.article-content {
+    padding: 2rem;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.badge {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 1.125rem;
+}
+
+.article-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #fcd34d;
+    border-radius: 0.5rem;
+    background: white;
+    color: #1f2937;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border-color: #f59e0b;
+    background: #fef3c7;
+}
+
+/* Tabs */
+.tabs {
+    margin-bottom: 2rem;
+}
+
+.tab-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6b7280;
+}
+
+.tab-button.active {
+    background: #d97706;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.article-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #374151;
+}
+
+.article-text h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin: 2rem 0 1rem 0;
+    color: #1f2937;
+}
+
+.article-text h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.75rem 0;
+    color: #1f2937;
+}
+
+.summary-card {
+    border: 2px solid #fcd34d;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background: white;
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.summary-description {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+.summary-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #374151;
+    white-space: pre-line;
+}
+
+/* Related News */
+.related-section {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fef3c7;
+    padding: 2rem;
+}
+
+.related-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 2rem;
+}
+
+.related-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.related-card {
+    border: 2px solid #fef3c7;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.related-card:hover {
+    border-color: #fcd34d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.related-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.related-content {
+    padding: 1.5rem;
+}
+
+.related-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.related-badge {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.related-time {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.related-title-text {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1f2937;
+    line-height: 1.4;
+}
