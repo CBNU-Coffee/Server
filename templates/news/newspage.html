@@ -10,12 +10,21 @@
         <div class="article-content">
             <!-- Meta Information -->
             <div class="article-meta">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop" 
+                alt="경제 전망 관련 이미지" class="article-image">
+        <img src="{{ news.image_url|default:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop' }}" 
+             alt="{{ news.News_title }}" class="article-image">
+        <div class="article-content">
+            <!-- Meta Information -->
+            <div class="article-meta">
+                <span class="badge">경제</span>
                 <span class="badge">{{ news.News_keyword|default:"카테고리 없음" }}</span>
                 <div class="meta-item">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <polyline points="12,6 12,12 16,14"/>
                     </svg>
+                    2024년 1월 15일 오후 2:30
                     {{ news.News_day }}
                 </div>
                 <div class="meta-item">
@@ -23,6 +32,7 @@
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
+                    김경제 기자
                     기자 정보 없음
                 </div>
                 <div class="meta-item">
@@ -30,7 +40,7 @@
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                         <circle cx="12" cy="12" r="3"/>
                     </svg>
-                    조회수 없음
+                    {{ news.view_count|default:"조회수 없음" }} 조회회
                 </div>
             </div>
 
