@@ -4,54 +4,38 @@
 <main class="main-container">
     <!-- Article -->
     <article class="article-card">
-<<<<<<< HEAD
         <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop" 
                 alt="경제 전망 관련 이미지" class="article-image">
-=======
         <img src="{{ news.image_url|default:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop' }}" 
              alt="{{ news.News_title }}" class="article-image">
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
-        
         <div class="article-content">
             <!-- Meta Information -->
             <div class="article-meta">
-<<<<<<< HEAD
                 <span class="badge">경제</span>
-=======
                 <span class="badge">{{ news.News_keyword|default:"카테고리 없음" }}</span>
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
                 <div class="meta-item">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <polyline points="12,6 12,12 16,14"/>
                     </svg>
-<<<<<<< HEAD
                     2024년 1월 15일 오후 2:30
-=======
                     {{ news.News_day }}
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
                 </div>
                 <div class="meta-item">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
-<<<<<<< HEAD
                     김경제 기자
-=======
                     기자 정보 없음
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
                 </div>
                 <div class="meta-item">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                         <circle cx="12" cy="12" r="3"/>
                     </svg>
-<<<<<<< HEAD
                     1,247회 조회
-=======
                     {{ news.view_count|default:"조회수 없음" }}
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
                 </div>
             </div>
 
