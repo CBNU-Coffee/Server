@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-<<<<<<< Updated upstream
 from .models import News
 """
 def test1(request):
@@ -42,7 +41,6 @@ def detail(request, news_id):
     article = get_object_or_404(News, pk=news_id)
     return render(request, 'news/newspage.html', {'article': article})
 
-=======
 from django.http import HttpResponseBadRequest
 from .models import Headline  # 모델 import
 from django.shortcuts import render, get_object_or_404
@@ -66,4 +64,3 @@ def search(request):
 def detail(request, pk):
     headline = get_object_or_404(Headline, pk=pk)
     return render(request, 'detail.html', {'headline': headline})
->>>>>>> Stashed changes

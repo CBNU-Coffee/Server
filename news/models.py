@@ -1,6 +1,5 @@
 from django.db import models
 
-<<<<<<< Updated upstream
 class News(models.Model):
     News_title=models.CharField(max_length=200)
     News_summary=models.TextField(blank=True)
@@ -13,7 +12,6 @@ class News(models.Model):
 class User(models.Model):
     User_ID=models.CharField()
     User_Password=models.TextField()
-=======
 class Headline(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
@@ -22,4 +20,3 @@ class Headline(models.Model):
 
     def __str__(self):
         return self.title
->>>>>>> Stashed changes
