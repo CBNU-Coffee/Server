@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.http import HttpResponseBadRequest
-from .models import News, Headline
+from .models import News
 """
 def main(request):
     return render(request,'news/main.html')
