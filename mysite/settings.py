@@ -80,6 +80,7 @@ DATABASES = {
         'ENGINE':   'django.db.backends.sqlite3',
         # DB 파일이 프로젝트 루트/Database/db.sqlite3 에 있다면:
         'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'Database' / 'db.sqlite3',
     }
 }
 
@@ -120,7 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    BASE_DIR / "static",
+    BASE_DIR / 'news' / 'static',
 ]
 TEMPLATES_URL = 'templates/'
 

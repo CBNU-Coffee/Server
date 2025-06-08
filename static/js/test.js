@@ -5,7 +5,7 @@ function goToResults() {
     alert("검색어를 입력하세요!");
     return;
   }
-  window.location.href = `/search/?keyword=${encodeURIComponent(keyword)}`;
+  window.location.href = `/result?keyword=${encodeURIComponent(keyword)}`;
 }
 
 // 결과 페이지 로드시 실행 (검색어 없을 경우 안내)
