@@ -14,7 +14,7 @@
     <!-- navigation bar -->
     <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">
+            <a href="{% url 'news:main' %}" class="logo">
                 <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
                     <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
@@ -27,20 +27,21 @@
                     <p>일상 속 커피 한잔처럼 뉴스를</p>
                 </div>
             </a>
-            <a href="{% url 'common:sign_in' %}">
-                <button class="menu-btn">
-                    {% if user.is_authenticated %}
+
+            <div class="menu-btn">
+                {% if user.is_authenticated %}
                     <a href="{% url 'common:sign_out' %}">{{ user.username }} (로그아웃)</a>
-                    {% else %}
+                {% else %}
                     <a href="{% url 'common:sign_in' %}">로그인</a>
-                    {% endif %}
-                </button>
-            </a>
+                {% endif %}
+            </div>
         </div>
     </header>
     <!-- end nav -->
+
     {% block content %}
     {% endblock %}
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
