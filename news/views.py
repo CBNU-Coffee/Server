@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from .models import News
+from django.shortcuts import render, get_object_or_404 
+from django.http import HttpResponseBadRequest
+from .models import News, Headline
 """
 def main(request):
     return render(request,'news/main.html')
@@ -36,24 +36,7 @@ def search(request):
 
 def detail(request, news_id):
     article = get_object_or_404(News, pk=news_id)
-<<<<<<< HEAD
-    return render(request, 'news/detail.html', {'article': article})
-"""
-
-def test1(request):
-    return render(request, 'news/mainpage.html')
-
-def test2(request):
-    return render(request, 'news/resultpage.html')
-
-def test3(request):
-    return render(request, 'news/newspage.html')
-=======
     return render(request, 'news/newspage.html', {'article': article})
-
-from django.http import HttpResponseBadRequest
-from .models import Headline  # 모델 import
-from django.shortcuts import render, get_object_or_404
 
 def index(request):
     return render(request,'index.html')
@@ -74,4 +57,3 @@ def search(request):
 def detail(request, pk):
     headline = get_object_or_404(Headline, pk=pk)
     return render(request, 'detail.html', {'headline': headline})
->>>>>>> eb8a51bcef414ed0471865fd697c03c93c8094ab
