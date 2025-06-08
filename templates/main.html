@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>뉴스 검색 - 메인</title>
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+  <h1>yaho! coffee</h1>
+  <div class="search-box">
+    <input id="mainSearchInput" class="search-input" type="text" name="keyword" placeholder="검색어를 입력하세요" />
+    <button class="search-button" onclick="goToResults()">검색</button>
+  </div>
+  <script src="{% static 'test.js' %}"></script>
+</body>
+</html>

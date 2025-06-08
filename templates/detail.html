@@ -1,0 +1,27 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <title>뉴스 상세 보기</title>
+  <link rel="stylesheet" href="{% static 'detail.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="headline">{{ headline.title }}</div>
+      <div class="fulltext">{{ headline.full_text }}</div>
+    </div>
+    <div class="right">
+      <div>
+        <h3>요약</h3>
+        <div class="summary">{{ headline.summary }}</div>
+      </div>
+      <div class="buttons">
+        <button onclick="readText('{{ headline.summary|escapejs }}')">요약 읽기</button>
+        <button onclick="readText('{{ headline.full_text|escapejs }}')">전문 읽기</button>
+        <button class="back-button" onclick="window.history.back()">← 이전 결과로 돌아가기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'test.js' %}"></script>
+</body>

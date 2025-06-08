@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>검색 결과</title>
+  <link rel="stylesheet" href="{% static 'result.css' %}">
+</head>
+<body>
+  <!-- 검색창 -->
+  <form method="get" action="{% url 'search' %}">
+    <input type="text" name="keyword" value="{{ keyword }}" placeholder="검색어를 입력하세요">
+    <button type="submit">검색</button>
+  </form>
+
+  <h1>검색 결과</h1>
+
+  <!-- 헤드라인 리스트 -->
+  <div class="headline-list">
+    {% for headline in headlines %}
+      <div class="headline-item" data-title="{{ headline }}">{{ headline }}</div>
+    {% empty %}
+      <p>헤드라인이 없습니다.</p>
+    {% endfor %}
+  </div>
+
+  <!-- js 파일 불러오기 -->
+  <script src="{% static 'test.js' %}"></script>
+
+  <!-- 클릭 이벤트 등록 -->
+  <script>
+    document.querySelectorAll('.headline-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const title = item.dataset.title;
+        window.location.href = `/detail/?title=${encodeURIComponent(title)}`;
+      });
+    });
+  </script>
+</body>
+</html>

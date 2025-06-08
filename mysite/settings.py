@@ -78,7 +78,11 @@ DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.sqlite3',
         # DB 파일이 프로젝트 루트/Database/db.sqlite3 에 있다면:
+<<<<<<< Updated upstream
         'NAME': BASE_DIR / 'db.sqlite3',
+=======
+        'NAME': BASE_DIR / 'Database' / 'db.sqlite3',
+>>>>>>> Stashed changes
     }
 }
 
@@ -119,7 +123,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
+<<<<<<< Updated upstream
     BASE_DIR / "static",
+=======
+    BASE_DIR / 'news' / 'static',
+>>>>>>> Stashed changes
 ]
 TEMPLATES_URL = 'templates/'
 
