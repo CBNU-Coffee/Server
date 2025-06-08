@@ -12,5 +12,3 @@ class News(models.Model):
 class User(models.Model):
     User_ID=models.CharField()
     User_Password=models.TextField()
-
-
