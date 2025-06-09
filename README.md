@@ -16,11 +16,17 @@
 
 
 ## 🛠️ 기술 스택
-Backend: Python, Django
+Backend: Python, Django, API(HuggingFace-gogamza)
 
 Database: MySQL
 
 기타: 추후 추가 예정
+
+## 설치해야 할 패키지
+beautifulsoup4
+tokenizers
+torch
+transformers
 
 ## 📣 목표
 시각장애인을 위한 정보 접근성 향상
